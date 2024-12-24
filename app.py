@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # Function to scrape eBay Kleinanzeigen listings
 def scrape_listings():
-    URL = "https://www.ebay-kleinanzeigen.de/s-meine-anzeigen.html"  # Replace with your actual URL
+    URL = "https://www.kleinanzeigen.de/s-bestandsliste.html?userId=56130477"  # Replace with your actual URL
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
     }
