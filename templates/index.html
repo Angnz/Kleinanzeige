@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My eBay Listings</title>
+</head>
+<body>
+    <h1>My eBay Listings</h1>
+    {% if listings %}
+        <ul>
+            {% for item in listings %}
+                <li><a href="{{ item.link }}" target="_blank">{{ item.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No listings found. Check your scraper or connection.</p>
+    {% endif %}
+</body>
+</html>
