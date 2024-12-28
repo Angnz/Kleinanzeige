@@ -1,20 +1,33 @@
 import requests
 from bs4 import BeautifulSoup
 
-def scrape_listings():
-    URL = "https://www.kleinanzeigen.de/s-bestandsliste.html?userId=56130477"  # Replace with your actual URL
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-    }
-    response = requests.get(URL, headers=headers)
-    if response.status_code == 200:
-        soup = BeautifulSoup(response.content, "html.parser")
-        items = soup.find_all("article", class_="aditem")  # Adjust this based on your HTML structure
+def scrape_kleinanzeige():
+    # Your Kleinanzeigen listings URL
+    URL = "https://www.kleinanzeigen.de/s-bestandsliste.html?userId=56130477"
+    
+    try:
+        # Fetch the page content
+        response = requests.get(URL)
+        response.raise_for_status()  # Check for HTTP errors
+        
+        # Parse the HTML content
+        soup = BeautifulSoup(response.text, 'html.parser')
+        
+        # Extract listings
         listings = []
-        for item in items:
-            title = item.find("a", class_="ellipsis").text.strip()
-            link = item.find("a", class_="ellipsis")["href"]
-            listings.append({"title": title, "link": f"https://www.ebay-kleinanzeigen.de{link}"})
+        for item in soup.select('.ad-listitem'):
+            # Update these selectors based on your HTML structure
+            title = item.select_one('.text-module-begin').text.strip()
+            price = item.select_one('.aditem-main--middle--price').text.strip()
+            url = item.select_one('a')['href']
+            listings.append({
+                "title": title,
+                "price": price,
+                "url": f"https://www.kleinanzeigen.de{url}"
+            })
+        
         return listings
-    else:
+
+    except Exception as e:
+        print(f"Error occurred while scraping: {e}")
         return []
