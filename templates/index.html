@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My eBay Listings</title>
+    <title>My eBay Kleinanzeige Listings</title>
 </head>
 <body>
-    <h1>My eBay Listings 2025</h1>
+    <h1>My eBay Kleinanzeige Listings</h1>
     {% if listings %}
         <ul>
-            {% for listing in listings %}
-                <li>
-                    <a href="{{ listing.link }}" target="_blank">{{ listing.title }}</a>
-                </li>
-            {% endfor %}
+        {% for listing in listings %}
+            <li>
+                <a href="{{ listing.url }}" target="_blank">{{ listing.title }}</a> - {{ listing.price }}
+            </li>
+        {% endfor %}
         </ul>
     {% else %}
         <p>No listings found. Check your scraper or connection.</p>
