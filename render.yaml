@@ -2,5 +2,6 @@ services:
   - type: web
     name: kleinanzeige
     env: python
-    buildCommand: ""
+    buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
+    plan: free
