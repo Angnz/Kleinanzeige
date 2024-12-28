@@ -13,10 +13,9 @@ def scrape_kleinanzeige():
         # Parse the HTML content
         soup = BeautifulSoup(response.text, 'html.parser')
         
-        # Extract listings
+        # Extract listings (adjust these selectors based on the actual HTML structure)
         listings = []
         for item in soup.select('.ad-listitem'):
-            # Update these selectors based on your HTML structure
             title = item.select_one('.text-module-begin').text.strip()
             price = item.select_one('.aditem-main--middle--price').text.strip()
             url = item.select_one('a')['href']
