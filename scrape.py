@@ -5,9 +5,13 @@ def scrape_kleinanzeige():
     # Your Kleinanzeigen listings URL
     URL = "https://www.kleinanzeigen.de/s-bestandsliste.html?userId=56130477"
     
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36"
+    }
+    
     try:
-        # Fetch the page content
-        response = requests.get(URL)
+        # Fetch the page content with headers
+        response = requests.get(URL, headers=headers)
         response.raise_for_status()  # Check for HTTP errors
         
         # Parse the HTML content
