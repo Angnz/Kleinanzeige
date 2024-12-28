@@ -1,11 +1,12 @@
 from flask import Flask, render_template
-from scrape import scrape_listings  # Import the scraping logic
+from scrape import scrape_kleinanzeige
 
 app = Flask(__name__)
 
 @app.route("/")
-def home():
-    listings = scrape_listings()  # Fetch data using the scraper
+def index():
+    # Call the scraping function to get listings
+    listings = scrape_kleinanzeige()
     return render_template("index.html", listings=listings)
 
 if __name__ == "__main__":
