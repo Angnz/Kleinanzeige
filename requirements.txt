@@ -2,5 +2,5 @@ Flask==2.3.2
 requests==2.31.0
 beautifulsoup4==4.12.2
 gunicorn==23.0.0
-selenium
-
+selenium==4.8.0
+webdriver-manager==4.8.0
